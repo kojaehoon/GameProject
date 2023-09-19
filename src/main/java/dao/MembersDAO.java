@@ -54,4 +54,16 @@ public class MembersDAO {
 			}
 		}
 	}
+	public boolean login(String id,String pw)throws Exception{
+	      String sql = "select * from gamemembers where id=? and pw=?";
+	      try(Connection con = this.getConnection();
+	            PreparedStatement pstat = con.prepareStatement(sql);){
+	         pstat.setString(1, id);
+	         pstat.setString(2, pw);
+	         try(ResultSet rs = pstat.executeQuery();){
+	            return  rs.next();
+	         }   
+	      }
+	   }
+
 }

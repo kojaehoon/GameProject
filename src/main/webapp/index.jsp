@@ -10,13 +10,12 @@
         <link rel="bigcut icon" href="img/game.png" />
         <link href="https://fonts.googleapis.com/earlyaccess/nanumpenscript.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.2/css/all.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
 
@@ -40,11 +39,11 @@
             }
 
             ::-webkit-scrollbar-track {
-                background-color: rgb(0, 0, 0);
+                background-color: rgb(255, 255, 255);
             }
 
             ::-webkit-scrollbar-thumb {
-                background-color: rgb(255, 255, 255);
+                background-color: rgb(0, 0, 0);
                 border-radius: 20px;
                 background-clip: border-box;
             }
@@ -59,6 +58,143 @@
                 background-color: white;
                 border-radius: 20px;
                 cursor: pointer;
+            }
+
+
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 40px;
+                width: 400px;
+                border-radius: 10px;
+                box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+            }
+
+            .modal-content h2 {
+                font-size: 28px;
+                font-weight: 500;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .modal-content form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .modal-content label {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .modal-content label i {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+
+            .modal-content input[type="text"],
+            .modal-content input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                font-size: 18px;
+                border: none;
+                border-bottom: 2px solid #ddd;
+                outline: none;
+                transition: border-bottom 0.2s ease-in-out;
+            }
+
+            .modal-content input[type="text"]:focus,
+            .modal-content input[type="password"]:focus {
+                border-bottom: 2px solid #000000;
+            }
+
+            .modal-content button[type="submit"] {
+                background-color: #000000;
+                color: #fff;
+                padding: 10px 20px;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out;
+                margin-top: 20px;
+            }
+
+            .modal-content button[type="submit"]:hover {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            .close-button {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 30px;
+                cursor: pointer;
+            }
+
+            #login-button {
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out;
+                display: block;
+            }
+
+            #login-modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 20px;
+                width: 400px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                animation: open-modal-animation 0.5s ease-in-out;
+                transition: transform 0.5s ease-in-out;
+            }
+
+            @keyframes open-modal-animation {
+                0% {
+                    transform: scale(0);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            @keyframes close-modal-animation {
+                0% {
+                    transform: scale(1);
+                }
+
+                100% {
+                    transform: scale(0);
+                }
             }
 
             .carousel-item {
@@ -94,6 +230,7 @@
             .playbutton:hover {
                 background-color: #ffffff;
                 color: rgb(0, 0, 0);
+                border: 1px solid #000000;
             }
 
             .loginbox {
@@ -206,7 +343,7 @@
                 cursor: pointer;
                 /* 마우스 올렸을때 손모양 처리 */
 
-                background-image: url(check_gray.png);
+                background-image: url(img/check_gray.png);
                 background-size: 70%;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -236,6 +373,12 @@
                 margin-top: 20px;
             }
 
+            .loginbtn:hover {
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
+                border: 1px solid #000000;
+            }
+
             .findelement {
                 margin-top: 10px;
                 padding-left: 0px;
@@ -249,6 +392,56 @@
                 font-size: 15px;
             }
 
+            .loginbox3 {
+                background-color: white;
+                border-radius: 20px;
+                margin-top: 70px;
+                height: 300px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .imgbox {
+                margin-top: 20px;
+                border: 1px solid rgba(128, 128, 128, 0.5);
+                border-radius: 50%;
+                width: 50%;
+                height: 50%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .imgbox img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .mpname {
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .mpbtn {
+                background-color: #000000;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                padding: 7px;
+                font-size: 13px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
+            .mpbtn:hover {
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
+                border: 1px solid #000000;
+            }
 
             .bodycontainer {
                 padding-left: 30px;
@@ -402,13 +595,19 @@
                 </div>
                 <div class="col-8 d-sm-block d-none">
                     <ul class="headerul">
-                        <li class="headerli">
-                            <a href="#" class="login">로그인</a>
+                        <li class="headerli headerlogin">
+                            <a href="#" class="login" id="login-button">로그인</a>
+                        </li>
+                        <li class="headerli membership">
+                            <a href="/Membership.members">회원가입</a>
+                        </li>
+                        <li class="headerli headerlogout">
+                            <a href="/logout.members">로그아웃</a>
                         </li>
                         <li class="headerli">
                             <a href="#">게시판</a>
                         </li>
-                        <li class="headerli">
+                        <li class="headerli headerboard">
                             <a href="#">마이페이지</a>
                         </li>
                     </ul>
@@ -420,8 +619,6 @@
                     <label for="active" class="close"></label>
                     <div class="wrapper">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Login</a></li>
                             <li><a href="#">Board</a></li>
                             <li><a href="#">MyPage</a></li>
                             <li><a href="#">Rank</a></li>
@@ -456,10 +653,10 @@
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-5">
-                                        <img src="img/롤하는 쥐돌이.png" class="d-block bannerimg" alt="...">
+                                        <img src="img/VampireSurvival.gif" class="d-block bannerimg" alt="...">
                                     </div>
                                     <div class="col-7">
-                                        <div class="bannertext"><strong>심슨1</strong></div><br>
+                                        <div class="bannertext"><strong>VampireSurvival</strong></div><br>
                                         오늘 날씨 너무 좋지 않나요?<br><br><br><br>
                                         <a href="#"><button class="playbutton">Play</button></a>
 
@@ -482,51 +679,66 @@
                 </div>
                 <div class="col-xl-3 d-none d-xl-block loginbox2">
                     <div class="row">
-                        <div class="col-12 g-0">
-                            <div class="loginbox">
-                                <div class="idlogin">
-                                    <i class="fa-regular fa-user"></i>
-                                    <input type="text" placeholder="아이디" id="id" class="inputlogin" name="id" />
-                                </div>
+                        <div class="col-12 g-0 trueable">
+                            <form action="/login.members" method="post">
+                                <div class="loginbox">
+                                    <div class="idlogin">
+                                        <i class="fa-regular fa-user"></i>
+                                        <input type="text" placeholder="아이디" id="id" class="inputlogin" name="id" />
+                                    </div>
 
-                                <div class="pwlogin">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <input type="password" placeholder="비밀번호" class="inputpw" name="pw" />
+                                    <div class="pwlogin">
+                                        <i class="fa-solid fa-lock"></i>
+                                        <input type="password" placeholder="비밀번호" class="inputpw" name="pw" />
+                                    </div>
+                                    <div class="check">
+                                        <label for="chk">
+                                            <input type="checkbox" id="chk" />
+                                            <i class="circle"></i>
+                                            <span class="text">로그인 상태 유지</span>
+                                        </label>
+                                    </div>
+                                    <input type="submit" value="로그인" class="loginbtn" />
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <ul class="findelement">
+                                                <a href="">
+                                                    <li>
+                                                        아이디 찾기
+                                                    </li>
+                                                </a>
+                                                <a href="">
+                                                    <li>
+                                                        비밀번호 찾기
+                                                    </li>
+                                                </a>
+                                                <a href="/Membership.members">
+                                                    <li>
+                                                        회원가입
+                                                    </li>
+                                                </a>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="check">
-                                    <label for="chk">
-                                        <input type="checkbox" id="chk" />
-                                        <i class="circle"></i>
-                                        <span class="text">로그인 상태 유지</span>
-                                    </label>
+                            </form>
+                        </div>
+                        <div class="col-12 g-0 falseable">
+                            <div class="loginbox3">
+                                <div class="imgbox">
+                                    <img src="img/쥐돌이.png" class="img" />
                                 </div>
-
-                                <button class="loginbtn">로그인</button>
+                                <div class="mpname">쥐돌이</div>
+                                <div class="mpemail">Mousedol2@naver.com</div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <ul class="findelement">
-                                            <a href="">
-                                                <li>
-                                                    아이디 찾기
-                                                </li>
-                                            </a>
-                                            <a href="">
-                                                <li>
-                                                    비밀번호 찾기
-                                                </li>
-                                            </a>
-                                            <a href="/Membership.members">
-                                                <li>
-                                                    회원가입
-                                                </li>
-                                            </a>
-                                        </ul>
+                                        <a href="/logout.members"><button type="button" class="mpbtn">로그아웃</button></a>
+                                        <a href="#"><button type="butotn" class="mpbtn">마이페이지</button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -559,9 +771,9 @@
                         </div>
                         <div class="col-6 col-lg-4 gamebox g-0">
                             <div class="game game2">
-                                <img src="img/simson.gif" loop="infinite" class="gameimg gameimg2">
+                                <img src="img/VampireSurvival.gif" loop="infinite" class="gameimg gameimg2">
                                 <div class="gametitle">
-                                    심슨
+                                    Vampire Survival
                                 </div>
                             </div>
                         </div>
@@ -657,7 +869,25 @@
                 </div>
             </div>
         </div>
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Login</h2>
+                <form action="/login.members" method="post">
+                    <label>
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="username" placeholder="아이디" name="id">
+                    </label>
+                    <label>
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="password" placeholder="비밀번호" name="pw">
+                    </label>
+                    <button type="submit">로그인</button>
+                </form>
+            </div>
+        </div>
         <script>
+            // 게임 박스 마우스 오버시 효과)(hover)
             $(".game").on("mouseover", function () {
                 $(this).css("transform", "scale(1.1)");
                 $(this).css("transition", "all 0.5s");
@@ -670,16 +900,7 @@
                 $(this).css("box-shadow", "none");
             });
 
-
-            // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음 
-            let popupX = (document.body.offsetWidth / 2) - (400 / 2);
-            // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-            let popupY = (window.screen.height / 2) - (500 / 2);
-            // 로그인 버튼을 누르면 무조건 팝업창이 화면의 가운데로 뜨도록 함
-            $(".login").on("click", function () {
-                window.open("login.jsp", "login", "width=400, height=500, left=" + popupX + ", top=" + popupY + ", resizable=no, scrollbars=no;");
-            });
-
+            // 베너 크기가 변할 때마다 margin 조정
             function adjustBannerMargin() {
                 const windowWidth = window.innerWidth;
                 const banner = document.querySelector('.banner');
@@ -699,9 +920,63 @@
             window.addEventListener('load', adjustBannerMargin);
             window.addEventListener('resize', adjustBannerMargin);
 
+            // 베너 이미지 클릭시 게임 페이지로 이동
             $(".game1").on("click", function () {
                 window.open("Jumpking.jsp");
             })
+
+            // 쿠키 생성해서 아이디 저장
+            let inputID = document.getElementById("id");
+            let remID = document.getElementById("chk");
+
+            let userID = Cookies.get("remID");
+            if (userID) {
+                inputID.value = userID;
+                remID.checked = true;
+            }
+            remID.onchange = function () {
+                if (remID.checked) {
+                    Cookies.set("remID", inputID.value, { expires: 7 }); // 7일간 저장
+                } else {
+                    Cookies.remove("remID"); // 쿠키 삭제
+                }
+            }
+
+            let sessionScope = "${sessionScope.loginID}";
+
+            if (sessionScope != "") {
+                $(".headerlogin").hide();
+                $(".membership").hide();
+                $(".headerlogout").show();
+                $(".trueable").hide();
+                $(".falseable").show();
+                $(".headerboard").show();
+            } else {
+                $(".headerlogin").show();
+                $(".membership").show();
+                $(".headerlogout").hide();
+                $(".trueable").show();
+                $(".falseable").hide();
+                $(".headerboard").hide();
+            }
+            const loginButton = document.getElementById("login-button");
+            const loginModal = document.getElementById("login-modal");
+            const closeButton = document.querySelector(".close-button");
+
+            loginButton.addEventListener("click", function () {
+                loginModal.style.display = "block";
+            });
+
+            closeButton.addEventListener("click", function () {
+                loginModal.style.display = "none";
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === loginModal) {
+                    loginModal.style.display = "none";
+                }
+            });
+
         </script>
 
     </body>
